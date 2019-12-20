@@ -28,36 +28,10 @@ import warnings
 warnings.filterwarnings('ignore')
 ```
 
-
-```python
-# __SOLUTION__ 
-import pandas as pd
-import numpy as np
-from sklearn.preprocessing import StandardScaler
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.model_selection import train_test_split, GridSearchCV
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.pipeline import Pipeline
-
-import warnings
-warnings.filterwarnings('ignore')
-```
-
 Import the `'winequality-red.csv'` dataset and print the first five rows of the data.  
 
 
 ```python
-# Import the data
-df = None
-
-
-# Print the first five rows
-
-```
-
-
-```python
-# __SOLUTION__ 
 # Import the data
 df = pd.read_csv('winequality-red.csv')
 
@@ -186,13 +160,6 @@ Use the `.describe()` method to print the summary stats of all columns in `df`. 
 
 
 ```python
-# Print the summary stats of all columns
-
-```
-
-
-```python
-# __SOLUTION__ 
 # Print the summary stats of all columns
 df.describe()
 ```
@@ -376,17 +343,6 @@ However, before standardizing the data, let's split it into training and test se
 
 ```python
 # Split the predictor and target variables
-y = None
-X = None
-
-# Split into training and test sets
-X_train, X_test, y_train, y_test = None
-```
-
-
-```python
-# __SOLUTION__ 
-# Split the predictor and target variables
 y = df['quality']
 X = df.drop('quality', axis=1)
 
@@ -402,21 +358,6 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random
 
 
 ```python
-# Instantiate StandardScaler
-scaler = None
-
-# Transform the training and test sets
-scaled_data_train = None
-scaled_data_test = None
-
-# Convert into a DataFrame
-scaled_df_train = pd.DataFrame(scaled_data_train, columns=X_train.columns)
-scaled_df_train.head()
-```
-
-
-```python
-# __SOLUTION__ 
 # Instantiate StandardScaler
 scaler = StandardScaler()
 
@@ -548,16 +489,6 @@ scaled_df_train.head()
 
 ```python
 # Instantiate KNeighborsClassifier
-clf = None
-
-# Fit the classifier
-
-```
-
-
-```python
-# __SOLUTION__ 
-# Instantiate KNeighborsClassifier
 clf = KNeighborsClassifier()
 
 # Fit the classifier
@@ -577,13 +508,6 @@ Use the classifier's `.score()` method to calculate the accuracy on the test set
 
 
 ```python
-# Print the accuracy on test set
-
-```
-
-
-```python
-# __SOLUTION__ 
 # Print the accuracy on test set
 clf.score(scaled_data_test, y_test)
 ```
@@ -610,13 +534,6 @@ Build a pipeline with two steps:
 
 ```python
 # Build a pipeline with StandardScaler and KNeighborsClassifier
-scaled_pipeline_1 = None
-```
-
-
-```python
-# __SOLUTION__ 
-# Build a pipeline with StandardScaler and KNeighborsClassifier
 scaled_pipeline_1 = Pipeline([('ss', StandardScaler()), 
                               ('knn', KNeighborsClassifier())])
 ```
@@ -626,16 +543,6 @@ scaled_pipeline_1 = Pipeline([('ss', StandardScaler()),
 
 
 ```python
-# Fit the training data to pipeline
-
-
-# Print the accuracy on test set
-
-```
-
-
-```python
-# __SOLUTION__ 
 # Fit the training data to pipeline
 scaled_pipeline_1.fit(X_train, y_train)
 
@@ -664,13 +571,6 @@ Again, build a pipeline with two steps:
 
 ```python
 # Build a pipeline with StandardScaler and RandomForestClassifier
-scaled_pipeline_2 = None
-```
-
-
-```python
-# __SOLUTION__ 
-# Build a pipeline with StandardScaler and RandomForestClassifier
 scaled_pipeline_2 = Pipeline([('ss', StandardScaler()), 
                               ('RF', RandomForestClassifier(random_state=123))])
 ```
@@ -679,15 +579,6 @@ Use the defined `grid` to perform a grid search. We limited the hyperparameters 
 
 
 ```python
-# Define the grid
-grid = [{'RF__max_depth': [4, 5, 6], 
-         'RF__min_samples_split': [2, 5, 10], 
-         'RF__min_samples_leaf': [1, 3, 5]}]
-```
-
-
-```python
-# __SOLUTION__ 
 # Define the grid
 grid = [{'RF__max_depth': [4, 5, 6], 
          'RF__min_samples_split': [2, 5, 10], 
@@ -703,13 +594,6 @@ Define a grid search now. Use:
 
 ```python
 # Define a grid search
-gridsearch = None
-```
-
-
-```python
-# __SOLUTION__ 
-# Define a grid search
 gridsearch = GridSearchCV(estimator=scaled_pipeline_2, 
                           param_grid=grid, 
                           scoring='accuracy', 
@@ -720,16 +604,6 @@ After defining the grid values and the grid search criteria, all that is left to
 
 
 ```python
-# Fit the training data
-
-
-# Print the accuracy on test set
-
-```
-
-
-```python
-# __SOLUTION__ 
 # Fit the training data
 gridsearch.fit(X_train, y_train)
 
