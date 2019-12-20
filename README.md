@@ -367,7 +367,7 @@ However, before standardizing the data, let's split it into training and test se
 
 > Note: You should always split the data before applying any scaling/preprocessing techniques in order to avoid data leakage. If you don't recall why this is necessary, you should refer to the **KNN with scikit-learn - Lab.** 
 
-# Split the data 
+## Split the data 
 
 - Assign the target (`'quality'` column) to `y` 
 - Drop this column and assign all the predictors to `X` 
