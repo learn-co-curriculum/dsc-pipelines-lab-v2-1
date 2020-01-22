@@ -3,7 +3,7 @@
 
 ## Introduction 
 
-In this lab you will work with the [Wine Quality Dataset](https://archive.ics.uci.edu/ml/datasets/wine+quality). The goal of this lab is not to teach you a new classifier or even show you how to improve the performace of your existing model, but rather to help you streamline your machine learning workflows using scikit-learn pipelines. Pipelines let you keep your preprocessing and model building steps together, thus simplifying your cognitive load. You will see for yourself why pipelines are great by building the same KNN model twice, but in different ways. 
+In this lab, you will work with the [Wine Quality Dataset](https://archive.ics.uci.edu/ml/datasets/wine+quality). The goal of this lab is not to teach you a new classifier or even show you how to improve the performance of your existing model, but rather to help you streamline your machine learning workflows using scikit-learn pipelines. Pipelines let you keep your preprocessing and model building steps together, thus simplifying your cognitive load. You will see for yourself why pipelines are great by building the same KNN model twice in different ways. 
 
 ## Objectives 
 
@@ -326,7 +326,7 @@ df.describe()
 
 
 
-As you can see from the data, not all features are on the same scale. Since we will be using k-nearest neighbors, which uses distance between features to classify points, we need to bring all these features to the same scale. This can be done using standardization. 
+As you can see from the data, not all features are on the same scale. Since we will be using k-nearest neighbors, which uses the distance between features to classify points, we need to bring all these features to the same scale. This can be done using standardization. 
 
 
 
@@ -521,7 +521,7 @@ clf.score(scaled_data_test, y_test)
 
 Nicely done. This pattern (preprocessing and fitting models) is very common. Although this process is fairly straightforward once you get the hang of it, **pipelines** make this process simpler, intuitive, and less error-prone. 
 
-Instead of standardizing and fitting the model separately, you can do this in one step using `sklearn`'s `Pipeline()`. A pipeline takes in any number of preprocessing steps each with `.fit()` and `transform()` methods (like `StandardScaler()` above), and a final step with a `.fit()` method (an estimator like `KNeighborsClassifier()`). The pipeline then sequentially applies preprocessing steps and finally fits the model. Do this now.   
+Instead of standardizing and fitting the model separately, you can do this in one step using `sklearn`'s `Pipeline()`. A pipeline takes in any number of preprocessing steps, each with `.fit()` and `transform()` methods (like `StandardScaler()` above), and a final step with a `.fit()` method (an estimator like `KNeighborsClassifier()`). The pipeline then sequentially applies the preprocessing steps and finally fits the model. Do this now.   
 
 ## Build a pipeline (I) 
 
@@ -539,7 +539,7 @@ scaled_pipeline_1 = Pipeline([('ss', StandardScaler()),
 ```
 
 - Transform and fit the model using this pipeline to the training data (you should use `X_train` here) 
-- Print the accuracy on test set (you should use `X_test` here) 
+- Print the accuracy of the model on the test set (you should use `X_test` here) 
 
 
 ```python
@@ -600,7 +600,7 @@ gridsearch = GridSearchCV(estimator=scaled_pipeline_2,
                           cv=5)
 ```
 
-After defining the grid values and the grid search criteria, all that is left to do is fit it to training data and then score the test set. Do it below: 
+After defining the grid values and the grid search criteria, all that is left to do is fit the model to training data and then score the test set. Do this below: 
 
 
 ```python
