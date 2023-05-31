@@ -1,4 +1,3 @@
-
 # Pipelines in scikit-learn - Lab 
 
 ## Introduction 
@@ -567,9 +566,7 @@ clf.fit(scaled_data_train, y_train)
 
 
 
-    KNeighborsClassifier(algorithm='auto', leaf_size=30, metric='minkowski',
-                         metric_params=None, n_jobs=None, n_neighbors=5, p=2,
-                         weights='uniform')
+    KNeighborsClassifier()
 
 
 
@@ -658,8 +655,8 @@ Of course, you can also perform a grid search to determine which combination of 
 
 Again, build a pipeline with two steps: 
 
-- First step: `StandardScaler()` 
-- Second step (estimator): `RandomForestClassifier()`. Set `random_state=123` when instantiating the random forest classifier 
+- First step: `StandardScaler()` named 'ss'.  
+- Second step (estimator): `RandomForestClassifier()` named 'RF'. Set `random_state=123` when instantiating the random forest classifier 
 
 
 ```python
@@ -740,7 +737,7 @@ gridsearch.score(X_test, y_test)
 
 
 
-    0.6125
+    0.6075
 
 
 
