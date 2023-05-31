@@ -1,4 +1,3 @@
-
 # Pipelines in scikit-learn - Lab 
 
 ## Introduction 
@@ -152,8 +151,8 @@ Of course, you can also perform a grid search to determine which combination of 
 
 Again, build a pipeline with two steps: 
 
-- First step: `StandardScaler()` 
-- Second step (estimator): `RandomForestClassifier()`. Set `random_state=123` when instantiating the random forest classifier 
+- First step: `StandardScaler()` named 'ss'.  
+- Second step (estimator): `RandomForestClassifier()` named 'RF'. Set `random_state=123` when instantiating the random forest classifier 
 
 
 ```python
